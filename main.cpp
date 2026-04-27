@@ -2,7 +2,10 @@
 #include <iostream>
 #include "car.h"
 #include <deque>
+#include <array>
 using namespace std;
+
+array<deque<Car>, 4> arr;
 deque<Car> tBooth;
 
 void printLine(deque<Car>);
