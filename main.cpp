@@ -25,16 +25,16 @@ int main() {
         }
     }
 
-    Car t2;
-    tBooth.push_back(t2);
 
     // Print initial Queue
     cout << "Initial Queue: " << endl;
-    printLine(tBooth);
-    cout << endl;
+    for (int i = 0; i < plaza.size(); i++) {
+        cout << "Lane " << i + 1 << ": " << endl;
+        printLine(plaza[i]);
+    }
 
     // Do-while loop randomly adds or removes car from queue and prints outcome
-    do {
+    /*do {
         cout << "Time: " << opNum << " Operation: "; 
         probability = (rand() % 100) + 1;
 
@@ -59,7 +59,7 @@ int main() {
         printLine(tBooth);
         cout << endl;
 
-    } while (tBooth.empty() == false);
+    } while (tBooth.empty() == false);*/
 
     return 0;
 }
