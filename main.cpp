@@ -4,8 +4,7 @@
 #include <deque>
 #include <array>
 using namespace std;
-
-array<deque<Car>, 4> arr;
+array<deque<Car>, 4> plaza;
 deque<Car> tBooth;
 
 void printLine(deque<Car>);
@@ -17,12 +16,17 @@ int main() {
     int probability;    //holds random probability percentage
     int opNum = 1;      //initialize operation count to 1
 
-    // Cars initially in the toll booth line
-    for (int i = 0; i < SIZE; i++) {
-        Car* temp = new Car;
-        tBooth.push_back(*temp);
-        delete temp;
+    // Cars initially in the toll booth plaza
+    for (int i = 0; i < plaza.size(); i++) {
+        for (int j = 0; j < SIZE; j++) {
+            Car* temp = new Car;
+            plaza[i].push_back(*temp);
+            delete temp;
+        }
     }
+
+    Car t2;
+    tBooth.push_back(t2);
 
     // Print initial Queue
     cout << "Initial Queue: " << endl;
