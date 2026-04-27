@@ -8,11 +8,10 @@ array<deque<Car>, 4> plaza;
 deque<Car> tBooth;
 
 void printLine(deque<Car>);
-void printPlaza(deque<Car> []);
 
 int main() {
     srand(time(0));
-    const int SIZE = 2;
+    const int SIZE = 2, OP1 = 46, OP2 = 85;
     Car t;              //temp Car object to hold info
     int probability;    //holds random probability percentage
     int opNum = 1;      //initialize operation count to 1
@@ -27,7 +26,6 @@ int main() {
         }
     }
 
-
     // Print initial Queue
     cout << "Initial Queue: " << endl;
     for (int i = 0; i < plaza.size(); i++) {
@@ -35,7 +33,7 @@ int main() {
         printLine(plaza[i]);
     }
 
-    // Do-while loop randomly adds or removes car from queue and prints outcome
+    // Do-while loop randomly adds or removes car from each line plaza and prints outcome
     for (int i = 0; i < 20; i++) {
         cout << "\nTime: " << opNum << endl;
         for (int j = 0; j < plaza.size(); j++) {
@@ -43,14 +41,14 @@ int main() {
             probability = (rand() % 100) + 1;
 
             // 46% probability the first car pays and leaves the line;
-            if (probability <= 46) {
+            if (probability <= OP1) {
                 t = plaza[j][0];
                 cout << "Paid: ";
                 t.print();
                 plaza[j].pop_front();
             }
             // 39% probability a car joins the line for the toll booth
-            else if(probability > 46 && probability < 86) {
+            else if(probability > OP1 && probability <= OP2) {
                 Car* temp = new Car;
                 t = *temp;
                 delete temp;
@@ -71,9 +69,11 @@ int main() {
         }
         opNum++;                    // Increment operation counter
         cout << "Queue: " << endl;
-        printLine(tBooth);
+        for (int i = 0; i < plaza.size(); i++) {
+            cout << "Lane " << i + 1 << ": " << endl;
+            printLine(plaza[i]);
+        }
         cout << endl;
-
     }
 
     return 0;
@@ -90,8 +90,4 @@ void printLine(deque<Car> t) {
                 element.print();
         }
     }
-}
-
-void printPlaza(deque<Car> (&a)[]) {
-    
 }
